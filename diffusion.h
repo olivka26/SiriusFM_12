@@ -99,8 +99,5 @@ namespace SiriusFM{
                 throw std::invalid_argument("Sigma must be non-negative");
         }
     };
-    class option{
-        
-    };
 }
 
