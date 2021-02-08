@@ -17,7 +17,7 @@ namespace SiriusFM{
             return m_mu*a_S;
         }
         double sigma(double a_S,double a_t)const{
-            return (m_sigma<0)? 0 : m_sigma * a_S;
+            return m_sigma * a_S;
         }
         DiffusionGBM(double a_mu, double a_sigma) :m_mu(a_mu), m_sigma(a_sigma)
         {
@@ -35,7 +35,7 @@ namespace SiriusFM{
             return m_mu*a_S;
         }
         double sigma(double a_S, double a_t)const{
-            return (m_sigma0<0 || m_sigma2<0 || m_sigma1*m_sigma1*-4*m_sigma2*m_sigma0>=0) ? 0 :m_sigma0+a_S*m_sigma1+a_S*a_S*m_sigma2;
+            return m_sigma0+a_S*m_sigma1+a_S*a_S*m_sigma2;
         }
         DiffusionLipton(double a_mu, double a_sigma0, double a_sigma1, double a_sigma2) :m_mu(a_mu), m_sigma0(a_sigma0), m_sigma1(a_sigma1), m_sigma2(a_sigma2){
             if(a_sigma0<0)
