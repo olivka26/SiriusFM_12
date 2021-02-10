@@ -12,6 +12,7 @@
 
 namespace SiriusFM{
 enum class CcyE{
+    UNDEFINED=-1,
     USD=0,
     EUR=1,
     GBP=2,
@@ -57,4 +58,6 @@ enum class IRModeE{
     FwdCurve=1,
     Stock=2
 };
+template <IRModeE IRM>
+class IRProvider;
 }

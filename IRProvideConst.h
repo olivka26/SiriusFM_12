@@ -10,8 +10,6 @@
 #include "IRProvide.h"
 
 namespace SiriusFM{
-template <IRModeE IRM>
-class IRProvider;
 template<>
 class IRProvider <IRModeE::Const>{
     double m_IRS[int(CcyE::JPY)];
