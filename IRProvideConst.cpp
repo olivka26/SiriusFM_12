@@ -9,6 +9,8 @@
 
 namespace SiriusFM{
     IRProvider <IRModeE::Const>::IRProvider(char const* a_file){
+        if(!a_file)
+            return;
         FILE *f=fopen(a_file, "r");
         if(!f)
             throw std::invalid_argument("Bad file");

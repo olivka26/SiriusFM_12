@@ -6,7 +6,7 @@
 //
 
 #pragma once
-#include <cstdio>
+#include <iostream>
 #include <cstring>
 #include <stdexcept>
 
@@ -51,7 +51,7 @@ inline CcyE Str2CcyE(char const* a_str){
         return CcyE::JPY;
     if(strcmp(a_str,"CHF")==0)
         return CcyE::CHF;
-    throw std::invalid_argument("Invalid Ccy");
+    throw std::invalid_argument("Invalid Ccy name");
 }
 enum class IRModeE{
     Const=0,
