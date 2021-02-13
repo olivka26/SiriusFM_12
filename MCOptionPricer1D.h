@@ -56,7 +56,7 @@ class MCOptionPricer1D{
             double var=(m_sum2-double(m_P)*px*px)/(double(m_P-1));
             assert(var>=0);
            // double err=(px!=0)? sqrt(var)/fabs(px) : sqrt(var);
-            return std::make_pair(sqrt(var), m_minP0, m_maxP0);
+            return std::make_tuple(sqrt(var), m_minP0, m_maxP0);
         }
     };
     Diffusion1D const* const m_diff;
