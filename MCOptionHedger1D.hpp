@@ -20,12 +20,29 @@ A_Provider,
 B_Provider,
 AssetClassA,
 AssetClassB>::SimulateHedging(Option <AssetClassA, AssetClassB> const* a_option,
-          time_t a_t0,double a_C0,DeltaFunc const* a_deltaFunc,double a_DeltaAcc,
-          int a_tau_mins,
-          long a_P){
+                              time_t a_t0,
+                              double a_C0,
+                              DeltaFunc const* a_deltaFunc,
+                              double a_DeltaAcc,
+                              int a_tau_mins,
+                              long a_P){
     assert(a_option !=nullptr && a_tau_mins >0 && a_P>0 && a_deltaFunc!=nullptr && a_DeltaAcc>0);
-    OPPathEval pathEval(a_option,&m_irpA, &m_irpB, a_C0, a_deltaFunc, a_DeltaAcc);
-    m_mce.template Simulate<true>(a_t0, a_option->m_expirTime, a_tau_mins,a_P,m_useTimerSeed,m_diff,&m_irpA, &m_irpB,a_option->m_assetA, a_option->m_assetB,&pathEval);
-    return athEval.GetStats();
+    OHPathEval pathEval(a_option,&m_irpA,
+                        &m_irpB,
+                        a_C0,
+                        a_deltaFunc,
+                        a_DeltaAcc);
+    m_mce.template Simulate<true>(a_t0,
+                                  a_option->expirTime(),
+                                  a_tau_mins,
+                                  a_P,
+                                  m_useTimerSeed,
+                                  m_diff,
+                                  &m_irpA,
+                                  &m_irpB,
+                                  a_option->assetA(),
+                                  a_option->assetB(),
+                                  &pathEval);
+    return pathEval.GetStats();
 }
 }

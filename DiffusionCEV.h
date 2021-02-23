@@ -14,7 +14,12 @@ namespace SiriusFM{
         double const m_sigma;
         double const m_beta;
     public:
-        DiffusionCEV(double a_mu, double a_sigma, double a_beta): m_mu(a_mu), m_sigma(a_sigma), m_beta(a_beta){
+        DiffusionCEV(double a_mu,
+                     double a_sigma,
+                     double a_beta):
+        m_mu(a_mu),
+        m_sigma(a_sigma),
+        m_beta(a_beta){
             if(a_beta<0)
                 throw std::invalid_argument("Beta must be non-negative");
             if(a_sigma<0)

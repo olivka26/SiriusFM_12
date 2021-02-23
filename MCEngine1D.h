@@ -11,11 +11,9 @@
 #include <stdexcept>
 #include <ctime>
 #include"Time.h"
-#include<tuple>
 
 namespace SiriusFM {
-template<
-typename Diffusion1D,
+template<typename Diffusion1D,
 typename A_Provider,
 typename B_Provider,
 typename AssetClassA,
@@ -26,8 +24,7 @@ class MCEngine1D{
     long const m_MaxPM; //Max Number of Stored
     double* const m_paths; //Stored Paths
     double* const m_ts; //Timeline
-   // long m_L; //Actual L
-   // long m_P; //Actual P
+    /*
     bool m_isRN;
     double m_tau;
     double m_t0;
@@ -36,16 +33,15 @@ class MCEngine1D{
     B_Provider const* m_rateB;
     AssetClassA m_A;
     AssetClassB m_B;
+     */
 public:
     MCEngine1D(long a_MaxL, long a_MaxPM)
     :m_MaxL(a_MaxL),
     m_MaxPM(a_MaxPM),
     m_paths(new double[m_MaxL* m_MaxPM]),
-    m_ts(new double[m_MaxL])
-    /*m_L(0),
-    m_P(0)*/{
+    m_ts(new double[m_MaxL]){
          if(m_MaxL <=0 || m_MaxPM<=0)
-            throw std::invalid_argument("bad MaxLP");
+            throw std::invalid_argument("bad MaxL or MaxPM");
          for (long l=0; l<m_MaxL; ++l){
              m_ts[l]=0;
              long lp=l*m_MaxPM;

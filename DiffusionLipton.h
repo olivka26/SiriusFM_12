@@ -15,7 +15,14 @@ namespace SiriusFM{
         double const m_sigma1;
         double const m_sigma2;
     public:
-        DiffusionLipton(double a_mu, double a_sigma0, double a_sigma1, double a_sigma2) :m_mu(a_mu), m_sigma0(a_sigma0), m_sigma1(a_sigma1), m_sigma2(a_sigma2){
+        DiffusionLipton(double a_mu,
+                        double a_sigma0,
+                        double a_sigma1,
+                        double a_sigma2)
+        :m_mu(a_mu),
+        m_sigma0(a_sigma0),
+        m_sigma1(a_sigma1),
+        m_sigma2(a_sigma2){
             if(a_sigma0<0)
                 throw std::invalid_argument("Sigma0 must be non-negative");
             if(a_sigma2<0)

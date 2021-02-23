@@ -36,8 +36,7 @@ PathEvaluator>::Simulate
   B_Provider const* a_rateB,
   AssetClassA a_A,
   AssetClassB a_B,
-  PathEvaluator* a_pathEval)
-{
+  PathEvaluator* a_pathEval){
 assert(a_diff!=nullptr &&
        a_rateA!=nullptr &&
        a_rateB!=nullptr &&
@@ -74,6 +73,8 @@ assert(a_diff!=nullptr &&
     long PI=(P%PM==0) ? (P/PM) : (P/PM+1); //max number of outer p iterations
   //  P=PI*PM;
     for(long i=0;i<PI;++i){
+//#pragma acc parallel loop
+#pragma omc parallel for
     for(long p=0;p<PMh;++p){
         double * path0=m_paths+2*p*L;
         double * path1=path0+L;
@@ -93,7 +94,11 @@ assert(a_diff!=nullptr &&
             }
             double sigma0=a_diff->sigma(Sp0,y);
             double sigma1=a_diff->sigma(Sp1,y);
-            double Z=N01(U),Sn0=0,Sn1=0;
+            double Z=0.0;
+#pragma omp critical
+             {Z=N01(U);}
+       //     double Z=N01(U);
+            double Sn0=0,Sn1=0;
             if(l==L-1){
                 Sn0=Sp0+mu0*tlast+sigma0*Z*slast;
                 Sn1=Sp1+mu1*tlast-sigma1*Z*slast;

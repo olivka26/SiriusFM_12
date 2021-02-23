@@ -24,10 +24,22 @@ AssetClassB>::Px(Option <AssetClassA, AssetClassB> const* a_option,
           int a_tau_mins,
           long a_P){
     assert(a_option !=nullptr && a_tau_mins >0 && a_P>0);
+    if (a_option->ifAmerican())
+        throw std::invalid_argument("MC cannot price American options");
     OPPathEval pathEval(a_option);
-    m_mce.template Simulate<true>(a_t0, a_option->m_expirTime, a_tau_mins,a_P,m_useTimerSeed,m_diff,&m_irpA, &m_irpB,a_option->m_assetA, a_option->m_assetB,&pathEval);
+    m_mce.template Simulate<true>(a_t0,
+                                  a_option->expirTime(),
+                                  a_tau_mins,
+                                  a_P,
+                                  m_useTimerSeed,
+                                  m_diff,
+                                  &m_irpA,
+                                  &m_irpB,
+                                  a_option->assetA(),
+                                  a_option->assetB(),
+                                  &pathEval);
     double px=pathEval.GetPx();
-    px *= m_irpB.DF(a_option->m_assetB, a_t0, a_option->m_expirTime);
+    px *= m_irpB.DF(a_option->assetB(), a_t0, a_option->expirTime());
     return px;
 }
 }

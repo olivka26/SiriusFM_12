@@ -14,7 +14,12 @@ namespace SiriusFM{
         double const m_theta;
         double const m_sigma;
     public:
-        DiffusionCIR(double a_kappa, double a_theta, double a_sigma): m_kappa(a_kappa), m_theta(a_theta), m_sigma(a_sigma){
+        DiffusionCIR(double a_kappa,
+                     double a_theta,
+                     double a_sigma):
+        m_kappa(a_kappa),
+        m_theta(a_theta),
+        m_sigma(a_sigma){
             if(a_kappa<0)
                 throw std::invalid_argument("Kappa must be non-negative");
             if(a_theta<0)

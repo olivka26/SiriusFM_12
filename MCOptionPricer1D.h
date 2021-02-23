@@ -55,7 +55,6 @@ class MCOptionPricer1D{
             double px=m_sum/double(m_P);
             double var=(m_sum2-double(m_P)*px*px)/(double(m_P-1));
             assert(var>=0);
-           // double err=(px!=0)? sqrt(var)/fabs(px) : sqrt(var);
             return std::make_tuple(sqrt(var), m_minP0, m_maxP0);
         }
     };
@@ -78,7 +77,7 @@ public:
     :m_diff(a_diff),
     m_irpA(a_irs_fileA),
     m_irpB(a_irs_fileB),
-    m_mce(102271,4096),
+    m_mce(102271,4096), //5-min points, 4096 paths
     m_useTimerSeed(a_useTimerSeed)
     {}
     double Px(Option <AssetClassA, AssetClassB> const* a_option,

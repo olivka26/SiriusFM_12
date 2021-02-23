@@ -48,9 +48,9 @@ int main(int argc, const char * argv[]){
     time_t T = t0 + SEC_IN_DAY * expirTime;
     OptionFX const * option = nullptr;
     if(strcmp(OptType,"Call")==0)
-        option = new EurCallOptionFX(ccyA, ccyB, K, T);
+        option = new CallOptionFX(ccyA, ccyB, K,T,true);
     else if(strcmp(OptType,"Put")==0)
-        option = new EurPutOptionFX(ccyA, ccyB, K, T);
+        option = new PutOptionFX(ccyA, ccyB, K, T,true);
     else
         throw invalid_argument("Invalid option type");
   //  OPPathEval *pathEval(option);
