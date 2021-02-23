@@ -14,7 +14,7 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     if (argc != 7){
-        cerr << "Params: mu, sigma, s0, T_days, tau_min, P" << endl;jhkjihkbje;kn
+        cerr << "Params: mu, sigma, s0, T_days, tau_min, P" << endl;
         return 1;
     }
     double mu = atof(argv[1]);
